@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=0.5, maximum-scale=3.0">
+    <title>HACKER SYSTEM - Login</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;700&family=Roboto+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="form-page">
+    <!-- Matrix Background Canvas -->
+    <canvas id="matrix-canvas"></canvas>
+    
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="nav-content">
+            <a href="index.html" class="nav-logo">
+                <span class="glitch" data-text="HACKER">HACKER</span>
+            </a>
+            <a href="index.html" class="back-button">
+                <span>← VOLTAR</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        <main class="form-container">
+            <div class="form-panel">
+                <!-- Header -->
+                <div class="form-header">
+                    <h1 class="form-title">AUTENTICAÇÃO</h1>
+                    <p class="form-subtitle">Insira suas credenciais de acesso</p>
+                    <div class="security-level">
+                        <span class="level-indicator">NÍVEL DE SEGURANÇA: </span>
+                        <span class="level-value">ALTO</span>
+                    </div>
+                </div>
+
+                <!-- Login Form -->
+                <form class="login-form" id="loginForm" novalidate>
+                    <div class="form-group">
+                        <label for="username" class="form-label">
+                            <span class="label-text">USUÁRIO/EMAIL</span>
+                            <span class="required">*</span>
+                        </label>
+                        <div class="input-container">
+                            <input 
+                                type="text" 
+                                id="username" 
+                                name="username" 
+                                class="form-input" 
+                                placeholder="Digite seu usuário ou email"
+                                required
+                                autocomplete="username"
+                            >
+                            <div class="input-border"></div>
+                            <div class="input-icon">👤</div>
+                        </div>
+                        <div class="field-feedback" id="username-feedback"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="form-label">
+                            <span class="label-text">SENHA</span>
+                            <span class="required">*</span>
+                        </label>
+                        <div class="input-container">
+                            <input 
+                                type="password" 
+                                id="password" 
+                                name="password" 
+                                class="form-input" 
+                                placeholder="Digite sua senha"
+                                required
+                                autocomplete="current-password"
+                            >
+                            <div class="input-border"></div>
+                            <div class="input-icon">🔒</div>
+                            <button type="button" class="toggle-password" id="togglePassword">
+                                <span class="eye-icon">👁</span>
+                            </button>
+                        </div>
+                        <div class="field-feedback" id="password-feedback"></div>
+                    </div>
+
+                    <!-- Additional Options -->
+                    <div class="form-options">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="rememberMe" name="rememberMe">
+                            <span class="checkmark"></span>
+                            <span class="checkbox-label">Lembrar-me</span>
+                        </label>
+                        <a href="#" class="forgot-password">Esqueceu a senha?</a>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="neon-button primary full-width" id="loginButton">
+                        <span class="button-text">INICIAR SESSÃO</span>
+                        <div class="button-glow"></div>
+                        <div class="loading-spinner-small" id="loginSpinner"></div>
+                    </button>
+
+                    <!-- Form Messages -->
+                    <div class="form-message" id="formMessage"></div>
+                </form>
+
+                <!-- Alternative Actions -->
+                <div class="form-footer">
+                    <p class="footer-text">Não possui uma conta?</p>
+                    <a href="register.html" class="link-button">
+                        <span>CRIAR CONTA</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hacking Animation Container -->
+            <div class="hacking-animation" id="hackingAnimation">
+                <div class="terminal-window">
+                    <div class="terminal-header">
+                        <div class="terminal-buttons">
+                            <span class="btn red"></span>
+                            <span class="btn yellow"></span>
+                            <span class="btn green"></span>
+                        </div>
+                        <span class="terminal-title">SISTEMA DE AUTENTICAÇÃO</span>
+                    </div>
+                    <div class="terminal-body">
+                        <div class="terminal-line">
+                            <span class="prompt">root@hacker:~$</span>
+                            <span class="command typing" id="hackingText"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="scripts/matrix.js"></script>
+    <script src="scripts/main.js"></script>
+</body>
+</html>
+

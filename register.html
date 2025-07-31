@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=0.5, maximum-scale=3.0">
+    <title>HACKER SYSTEM - Cadastro</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;700&family:Roboto+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="form-page">
+    <!-- Matrix Background Canvas -->
+    <canvas id="matrix-canvas"></canvas>
+    
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="nav-content">
+            <a href="index.html" class="nav-logo">
+                <span class="glitch" data-text="HACKER">HACKER</span>
+            </a>
+            <a href="index.html" class="back-button">
+                <span>← VOLTAR</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        <main class="form-container">
+            <div class="form-panel">
+                <!-- Header -->
+                <div class="form-header">
+                    <h1 class="form-title">REGISTRO DE USUÁRIO</h1>
+                    <p class="form-subtitle">Crie sua conta no sistema</p>
+                    <div class="security-level">
+                        <span class="level-indicator">PROTOCOLO: </span>
+                        <span class="level-value">CRIPTOGRAFIA AES-256</span>
+                    </div>
+                </div>
+
+                <!-- Registration Form -->
+                <form class="register-form" id="registerForm" novalidate>
+                    <div class="form-group">
+                        <label for="username" class="form-label">
+                            <span class="label-text">NOME DE USUÁRIO</span>
+                            <span class="required">*</span>
+                        </label>
+                        <div class="input-container">
+                            <input 
+                                type="text" 
+                                id="username" 
+                                name="username" 
+                                class="form-input" 
+                                placeholder="Escolha um nome de usuário"
+                                required
+                                autocomplete="username"
+                                minlength="3"
+                                maxlength="20"
+                            >
+                            <div class="input-border"></div>
+                            <div class="input-icon">👤</div>
+                            <div class="validation-icon" id="username-validation"></div>
+                        </div>
+                        <div class="field-feedback" id="username-feedback"></div>
+                        <div class="field-requirements">
+                            <small>3-20 caracteres, apenas letras, números e underscore</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="form-label">
+                            <span class="label-text">E-MAIL</span>
+                            <span class="required">*</span>
+                        </label>
+                        <div class="input-container">
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                class="form-input" 
+                                placeholder="Digite seu e-mail"
+                                required
+                                autocomplete="email"
+                            >
+                            <div class="input-border"></div>
+                            <div class="input-icon">📧</div>
+                            <div class="validation-icon" id="email-validation"></div>
+                        </div>
+                        <div class="field-feedback" id="email-feedback"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="form-label">
+                            <span class="label-text">SENHA</span>
+                            <span class="required">*</span>
+                        </label>
+                        <div class="input-container">
+                            <input 
+                                type="password" 
+                                id="password" 
+                                name="password" 
+                                class="form-input" 
+                                placeholder="Crie uma senha segura"
+                                required
+                                autocomplete="new-password"
+                                minlength="8"
+                            >
+                            <div class="input-border"></div>
+                            <div class="input-icon">🔒</div>
+                            <div class="validation-icon" id="password-validation"></div>
+                            <button type="button" class="toggle-password" id="togglePassword">
+                                <span class="eye-icon">👁</span>
+                            </button>
+                        </div>
+                        <div class="field-feedback" id="password-feedback"></div>
+                        
+                        <!-- Password Strength Indicator -->
+                        <div class="password-strength" id="passwordStrength">
+                            <div class="strength-label">Força da senha:</div>
+                            <div class="strength-bar">
+                                <div class="strength-fill" id="strengthFill"></div>
+                            </div>
+                            <div class="strength-text" id="strengthText">Muito fraca</div>
+                        </div>
+                        
+                        <div class="field-requirements">
+                            <small>Mínimo 8 caracteres, incluindo maiúscula, minúscula, número e símbolo</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword" class="form-label">
+                            <span class="label-text">CONFIRMAR SENHA</span>
+                            <span class="required">*</span>
+                        </label>
+                        <div class="input-container">
+                            <input 
+                                type="password" 
+                                id="confirmPassword" 
+                                name="confirmPassword" 
+                                class="form-input" 
+                                placeholder="Confirme sua senha"
+                                required
+                                autocomplete="new-password"
+                            >
+                            <div class="input-border"></div>
+                            <div class="input-icon">🔐</div>
+                            <div class="validation-icon" id="confirmPassword-validation"></div>
+                            <button type="button" class="toggle-password" id="toggleConfirmPassword">
+                                <span class="eye-icon">👁</span>
+                            </button>
+                        </div>
+                        <div class="field-feedback" id="confirmPassword-feedback"></div>
+                    </div>
+
+                    <!-- Terms and Conditions -->
+                    <div class="form-group">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="acceptTerms" name="acceptTerms" required>
+                            <span class="checkmark"></span>
+                            <span class="checkbox-label">
+                                Aceito os <a href="#" class="link">termos de uso</a> e 
+                                <a href="#" class="link">política de privacidade</a>
+                            </span>
+                        </label>
+                        <div class="field-feedback" id="terms-feedback"></div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="neon-button primary full-width" id="registerButton" disabled>
+                        <span class="button-text">CRIAR CONTA</span>
+                        <div class="button-glow"></div>
+                        <div class="loading-spinner-small" id="registerSpinner"></div>
+                    </button>
+
+                    <!-- Form Messages -->
+                    <div class="form-message" id="formMessage"></div>
+                </form>
+
+                <!-- Alternative Actions -->
+                <div class="form-footer">
+                    <p class="footer-text">Já possui uma conta?</p>
+                    <a href="login.html" class="link-button">
+                        <span>FAZER LOGIN</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Registration Progress -->
+            <div class="registration-progress" id="registrationProgress">
+                <div class="progress-header">
+                    <h3>PROGRESSO DO CADASTRO</h3>
+                </div>
+                <div class="progress-steps">
+                    <div class="step" id="step-username">
+                        <div class="step-icon">👤</div>
+                        <span>Usuário</span>
+                    </div>
+                    <div class="step" id="step-email">
+                        <div class="step-icon">📧</div>
+                        <span>E-mail</span>
+                    </div>
+                    <div class="step" id="step-password">
+                        <div class="step-icon">🔒</div>
+                        <span>Senha</span>
+                    </div>
+                    <div class="step" id="step-confirm">
+                        <div class="step-icon">🔐</div>
+                        <span>Confirmação</span>
+                    </div>
+                    <div class="step" id="step-terms">
+                        <div class="step-icon">📋</div>
+                        <span>Termos</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="scripts/matrix.js"></script>
+    <script src="scripts/main.js"></script>
+</body>
+</html>
+

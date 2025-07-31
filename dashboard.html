@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=0.5, maximum-scale=3.0">
+    <title>HACKER SYSTEM - Dashboard</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;700&family=Roboto+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-page">
+    <!-- Matrix Background Canvas -->
+    <canvas id="matrix-canvas"></canvas>
+    
+    <!-- Top Navigation Bar -->
+    <nav class="dashboard-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="brand-icon">⚡</span>
+                <span class="brand-text glitch" data-text="HACKER">HACKER</span>
+                <span class="brand-version">v2.1.4</span>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="#dashboard" class="nav-item active" data-section="dashboard">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="#profile" class="nav-item" data-section="profile">
+                    <span class="nav-icon">👤</span>
+                    <span class="nav-text">Perfil</span>
+                </a>
+                <a href="#settings" class="nav-item" data-section="settings">
+                    <span class="nav-icon">⚙️</span>
+                    <span class="nav-text">Configurações</span>
+                </a>
+                <a href="#" class="nav-item logout" onclick="logout()">
+                    <span class="nav-icon">🚪</span>
+                    <span class="nav-text">Logout</span>
+                </a>
+            </div>
+            
+            <div class="nav-user">
+                <div class="user-avatar" id="userAvatar">H</div>
+                <div class="user-info">
+                    <span class="user-name" id="userName">Hacker</span>
+                    <span class="user-status">Online</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+        <!-- Dashboard Section -->
+        <section class="content-section active" id="dashboard-section">
+            <div class="section-header">
+                <h1 class="section-title">
+                    <span class="typing-text" id="welcomeMessage">Bem-vindo ao sistema, Hacker</span>
+                    <span class="cursor">|</span>
+                </h1>
+                <div class="system-status">
+                    <span class="status-indicator online"></span>
+                    <span>Sistema operacional</span>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <!-- System Stats -->
+                <div class="dashboard-card stats-card">
+                    <div class="card-header">
+                        <h3>ESTATÍSTICAS DO SISTEMA</h3>
+                        <div class="card-icon">📊</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="stat-item">
+                            <span class="stat-label">CPU:</span>
+                            <div class="stat-bar">
+                                <div class="stat-fill" style="width: 67%"></div>
+                            </div>
+                            <span class="stat-value">67%</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">RAM:</span>
+                            <div class="stat-bar">
+                                <div class="stat-fill" style="width: 43%"></div>
+                            </div>
+                            <span class="stat-value">43%</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">REDE:</span>
+                            <div class="stat-bar">
+                                <div class="stat-fill" style="width: 89%"></div>
+                            </div>
+                            <span class="stat-value">89%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Terminal Simulator -->
+                <div class="dashboard-card terminal-card" id="terminalCard">
+                    <div class="card-header">
+                        <h3>TERMINAL</h3>
+                        <div class="terminal-controls">
+                            <span class="btn red"></span>
+                            <span class="btn yellow"></span>
+                            <span class="btn green"></span>
+                        </div>
+                    </div>
+                    <div class="card-content terminal-content">
+                        <div class="terminal-output" id="terminalOutput">
+                            <div class="terminal-line">
+                                <span class="prompt">root@hacker:~$</span>
+                                <span class="command">whoami</span>
+                            </div>
+                            <div class="terminal-line output">hacker_user</div>
+                            <div class="terminal-line">
+                                <span class="prompt">root@hacker:~$</span>
+                                <span class="command">ls -la</span>
+                            </div>
+                            <div class="terminal-line output">drwxr-xr-x 5 root root 4096 Jul 30 21:21 .</div>
+                            <div class="terminal-line output">drwxr-xr-x 3 root root 4096 Jul 30 21:20 ..</div>
+                            <div class="terminal-line output">-rw-r--r-- 1 root root  220 Jul 30 21:20 .bash_logout</div>
+                            <div class="terminal-line">
+                                <span class="prompt">root@hacker:~$</span>
+                                <span class="cursor-terminal">_</span>
+                            </div>
+                        </div>
+                        <input type="text" class="terminal-input" id="terminalInput" placeholder="Digite um comando...">
+                    </div>
+                </div>
+
+                <!-- Network Monitor -->
+                <div class="dashboard-card network-card">
+                    <div class="card-header">
+                        <h3>MONITOR DE REDE</h3>
+                        <div class="card-icon">🌐</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="network-item">
+                            <span class="network-label">IP Local:</span>
+                            <span class="network-value">192.168.1.100</span>
+                        </div>
+                        <div class="network-item">
+                            <span class="network-label">Gateway:</span>
+                            <span class="network-value">192.168.1.1</span>
+                        </div>
+                        <div class="network-item">
+                            <span class="network-label">DNS:</span>
+                            <span class="network-value">8.8.8.8</span>
+                        </div>
+                        <div class="network-item">
+                            <span class="network-label">Latência:</span>
+                            <span class="network-value ping" id="pingValue">12ms</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="dashboard-card actions-card">
+                    <div class="card-header">
+                        <h3>AÇÕES RÁPIDAS</h3>
+                        <div class="card-icon">⚡</div>
+                    </div>
+                    <div class="card-content">
+                        <button class="action-button" onclick="scanNetwork()">
+                            <span class="action-icon">🔍</span>
+                            <span>Scan de Rede</span>
+                        </button>
+                        <button class="action-button" onclick="checkSecurity()">
+                            <span class="action-icon">🛡️</span>
+                            <span>Verificar Segurança</span>
+                        </button>
+                        <button class="action-button nuclear-button" onclick="initNuclearSequence()">
+                            <span class="action-icon">💣</span>
+                            <span>Bomba Nuclear</span>
+                        </button>
+                        <button class="action-button" onclick="generateReport()">
+                            <span class="action-icon">📋</span>
+                            <span>Gerar Relatório</span>
+                        </button>
+                        <button class="action-button easter-egg-trigger" id="secretButton">
+                            <span class="action-icon">🔐</span>
+                            <span>Acesso Especial</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Fighter Jet Control Panel -->
+                <div class="dashboard-card fighter-panel">
+                    <div class="card-header">
+                        <h3>PAINEL DE CONTROLE F-22</h3>
+                        <div class="card-icon">✈️</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="fighter-controls">
+                            <div class="ip-scanner">
+                                <label for="ipInput">PESQUISAR IP:</label>
+                                <div class="ip-input-group">
+                                    <input type="text" id="ipInput" placeholder="192.168.1.1" class="ip-input">
+                                    <button onclick="scanIP()" class="scan-button">SCAN</button>
+                                </div>
+                                <div id="ipResults" class="ip-results"></div>
+                            </div>
+                            <div class="skynet-control">
+                                <button onclick="activateSkyNet()" class="skynet-button">
+                                    <span class="skynet-icon">🤖</span>
+                                    <span>ATIVAR SKYNET</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Profile Section -->
+        <section class="content-section" id="profile-section">
+            <div class="section-header">
+                <h1 class="section-title">PERFIL DO USUÁRIO</h1>
+            </div>
+            <div class="profile-content">
+                <div class="profile-card">
+                    <div class="profile-avatar-container">
+                        <div class="profile-avatar-large" id="profileAvatarLarge">H</div>
+                        <img id="profileImageLarge" class="profile-image-large" style="display: none;" alt="Profile">
+                        <div class="upload-overlay-large" id="uploadOverlayLarge">
+                            <span class="upload-icon">📷</span>
+                            <span class="upload-text">Alterar Foto</span>
+                        </div>
+                        <input type="file" id="photoUploadLarge" accept="image/*" style="display: none;">
+                    </div>
+                    <h2 class="profile-name" id="profileName">Hacker User</h2>
+                    <p class="profile-role">Administrador do Sistema</p>
+                    <div class="profile-stats">
+                        <div class="profile-stat">
+                            <span class="stat-number">127</span>
+                            <span class="stat-label">Acessos</span>
+                        </div>
+                        <div class="profile-stat">
+                            <span class="stat-number">42</span>
+                            <span class="stat-label">Comandos</span>
+                        </div>
+                        <div class="profile-stat">
+                            <span class="stat-number">15</span>
+                            <span class="stat-label">Dias Online</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Settings Section -->
+        <section class="content-section" id="settings-section">
+            <div class="section-header">
+                <h1 class="section-title">CONFIGURAÇÕES</h1>
+            </div>
+            <div class="settings-content">
+                <div class="settings-group">
+                    <h3>Aparência</h3>
+                    <div class="setting-item">
+                        <label>Tema do Matrix</label>
+                        <input type="checkbox" id="matrixTheme" checked>
+                    </div>
+                    <div class="setting-item">
+                        <label>Efeitos de Glitch</label>
+                        <input type="checkbox" id="glitchEffects" checked>
+                    </div>
+                </div>
+                <div class="settings-group">
+                    <h3>Segurança</h3>
+                    <div class="setting-item">
+                        <label>Autenticação em Duas Etapas</label>
+                        <input type="checkbox" id="twoFactor">
+                    </div>
+                    <div class="setting-item">
+                        <label>Logout Automático</label>
+                        <select id="autoLogout">
+                            <option value="15">15 minutos</option>
+                            <option value="30" selected>30 minutos</option>
+                            <option value="60">1 hora</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Easter Egg Modal -->
+    <div class="modal-overlay" id="easterEggModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🎉 EASTER EGG DESCOBERTO!</h2>
+                <button class="modal-close" onclick="closeEasterEgg()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="easter-egg-message" id="easterEggMessage">
+                    Parabéns! Você encontrou um segredo escondido no sistema.
+                </p>
+                <div class="easter-egg-reward">
+                    <span class="reward-icon">🏆</span>
+                    <span class="reward-text">Acesso liberado ao modo desenvolvedor!</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- System Time Display -->
+    <div class="system-time" id="systemTime"></div>
+
+    <!-- Scripts -->
+    <script src="scripts/matrix.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/easter-eggs.js"></script>
+</body>
+</html>
+

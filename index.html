@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=0.5, maximum-scale=3.0">
+    <title>HACKER SYSTEM - Acesso Restrito</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="main-container">
+        <!-- Matrix Background Canvas -->
+        <canvas id="matrix-canvas"></canvas>
+    
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="glitch-container">
+                <h1 class="title glitch" data-text="HACKER SYSTEM">HACKER SYSTEM</h1>
+                <div class="subtitle">
+                    <span class="typing-text">Acesso_Restrito_</span>
+                    <span class="cursor">|</span>
+                </div>
+            </div>
+            
+            <!-- Security Warning -->
+            <div class="security-warning">
+                <div class="warning-icon">⚠</div>
+                <p>SISTEMA PROTEGIDO - AUTORIZAÇÃO NECESSÁRIA</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="access-panel">
+                <div class="panel-header">
+                    <h2>TERMINAL DE ACESSO</h2>
+                    <div class="status-indicator">
+                        <span class="status-dot"></span>
+                        <span>ONLINE</span>
+                    </div>
+                </div>
+                
+                <div class="access-options">
+                    <div class="option-card" id="login-card">
+                        <div class="card-icon">🔐</div>
+                        <h3>FAZER LOGIN</h3>
+                        <p>Acesse sua conta existente</p>
+                        <button class="neon-button primary" onclick="navigateToLogin()">
+                            <span>ENTRAR</span>
+                            <div class="button-glow"></div>
+                        </button>
+                    </div>
+                    
+                    <div class="option-card" id="register-card">
+                        <div class="card-icon">👤</div>
+                        <h3>CRIAR CONTA</h3>
+                        <p>Registre-se no sistema</p>
+                        <button class="neon-button secondary" onclick="navigateToRegister()">
+                            <span>CADASTRAR</span>
+                            <div class="button-glow"></div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p>&copy; 2025 HACKER SYSTEM - Todos os direitos reservados</p>
+                <div class="system-info">
+                    <span>v2.1.4</span>
+                    <span class="separator">|</span>
+                    <span id="current-time"></span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p class="loading-text">Inicializando sistema...</p>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div> <!-- End of container -->
+    </div> <!-- End of main-container -->
+
+    <!-- Scripts -->
+    <script src="scripts/matrix.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/easter-eggs.js"></script>
+</body>
+</html>
